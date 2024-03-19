@@ -1,3 +1,6 @@
+# Jaydon Haghighi Saed (101206884)
+# 2024-03-18
+# Assignment 3 Question 1
 import psycopg2
 
 # Connect to the PostgreSQL database
@@ -9,11 +12,15 @@ conn_params = {
 }
 
 def get_connection():
-    """Establish a connection to the database."""
+    """
+    Establish a connection to the database.
+    """
     return psycopg2.connect(**conn_params)
 
 def getAllStudents():
-    """Retrieves and displays all records from the students table."""
+    """
+    Retrieves and displays all records from the students table.
+    """
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM students;")
@@ -23,7 +30,9 @@ def getAllStudents():
     conn.close()
 
 def addStudent(first_name, last_name, email, enrollment_date):
-    """Inserts a new student record into the students table."""
+    """
+    Inserts a new student record into the students table.
+    """
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute("INSERT INTO students (first_name, last_name, email, enrollment_date) VALUES (%s, %s, %s, %s);",
@@ -33,7 +42,9 @@ def addStudent(first_name, last_name, email, enrollment_date):
     conn.close()
 
 def updateStudentEmail(student_id, new_email):
-    """Updates the email address for a student with the specified student_id."""
+    """
+    Updates the email address for a student with the specified student_id.
+    """
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute("UPDATE students SET email = %s WHERE student_id = %s;",
@@ -43,7 +54,9 @@ def updateStudentEmail(student_id, new_email):
     conn.close()
 
 def deleteStudent(student_id):
-    """Deletes the record of the student with the specified student_id."""
+    """
+    Deletes the record of the student with the specified student_id.
+    """
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute("DELETE FROM students WHERE student_id = %s;", (student_id,))
